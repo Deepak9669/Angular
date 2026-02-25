@@ -6,17 +6,22 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { SingupComponent } from './singup/singup.component';
+import { FormsModule } from '@angular/forms';
+    
 
-@NgModule({
+@NgModule({         
   declarations: [
     AppComponent,
     WelcomeComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    SingupComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
