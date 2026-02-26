@@ -1,0 +1,47 @@
+<div align="center" >
+
+    <h1>Singup Form</h1>
+
+<form (submit)="singUp()">
+<table>
+
+    <tr>
+        <th>First Name</th>
+        <td><input type="text" name="firstName" [(ngModel)]="form.data.firstName" placeholder="firstName name is required"></td>
+    </tr>
+
+     <tr>
+        <th>Last Name</th>
+        <td><input type="text" name="lastName" [(ngModel)]="form.data.lastName" placeholder="lastName name is required"></td>
+    </tr>
+
+     <tr>
+        <th>LoginId</th>
+        <td><input type="email" name="loginId" [(ngModel)]="form.data.loginId" placeholder="loginId is required"></td>
+    </tr>
+
+     <tr>
+        <th>Password</th>
+        <td><input type="password" name="password" [(ngModel)]="form.data.password" placeholder="Password is required"></td>
+    </tr>
+
+     <tr>
+        <th>Dob</th>
+        <td><input type="date" name="dob" [(ngModel)]="form.data.dob" placeholder="Date of Birth is required"></td>
+    </tr>
+
+     <tr>
+        <th></th>
+        <td><input type="submit" value="singup"></td>
+    </tr>
+
+
+</table>
+
+
+
+</form>
+
+
+
+</div>

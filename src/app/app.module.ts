@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { SingupComponent } from './singup/singup.component';
+import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
     
 
@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
     WelcomeComponent,
     NavbarComponent,
     FooterComponent,
-    SingupComponent
+    SignupComponent
   ],
   imports: [
     BrowserModule,
