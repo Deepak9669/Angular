@@ -1,0 +1,30 @@
+<div align="center">
+
+    <h1>Login</h1>
+    <h3 [style.color]="form.success ? 'green' : 'red'">{{form.message}}</h3>
+    <form (submit)="signIn()">
+        <table>
+
+            <tr>
+                <th>LoginId</th>
+                <td><input type="email" name="loginId" [(ngModel)]="form.data.loginId"
+                        placeholder="loginId is required"></td>
+                <td><span *ngIf="form.inputerror.loginId" style="color:red">{{form.inputerror.loginId}}</span></td>
+            </tr>
+
+            <tr>
+                <th>Password</th>
+                <td><input type="password" name="password" [(ngModel)]="form.data.password"
+                        placeholder="Password is required"></td>
+                <td><span *ngIf="form.inputerror.password" style="color:red">{{form.inputerror.password}}</span></td>
+            </tr>
+
+            <tr>
+                <th></th>
+                <td><input type="submit" value="signIn"></td>
+                    <input type="button" value="signUp" (click)="signUp()">
+            </tr>
+
+        </table>
+    </form>
+</div>
