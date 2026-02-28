@@ -1,7 +1,7 @@
 <div align="center" >
 
-    <h1>User Registration</h1>
-<h3>{{form.message}}</h3>
+    <h1>Add User</h1>
+<h3 [style.color]="form.success ? 'green' : 'red'">{{form.message}}</h3>
 <form (submit)="save()">
 <table>
 

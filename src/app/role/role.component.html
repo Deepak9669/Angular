@@ -1,0 +1,38 @@
+<div align="center">
+
+    <h1> Add Role </h1>
+    <h1 [style.color]="form.success ? 'green' : 'red'">{{form.message}}</h1>
+    <form (ngSubmit)="saveRole()">
+
+        <table>
+
+            <tr>
+                <th>Role Name</th>
+                <td><input type="text" name="name" [(ngModel)]="form.data.name"
+                        placeholder="Role Name is required"></td>
+                <td><span *ngIf="form.inputerror.name" style="color:red">{{form.inputerror.name}}</span></td>
+            </tr>
+
+            <tr>
+                <th>Description</th>
+                <td><input type="text" name="description" [(ngModel)]="form.data.description"
+                        placeholder="Description is required"></td>
+                <td><span *ngIf="form.inputerror.description" style="color:red">{{form.inputerror.description}}</span>
+                </td>
+
+            <tr>
+                <th></th>
+                <td><input type="submit" value="save"></td>
+            </tr>
+
+        </table>
+
+
+
+
+    </form>
+
+
+
+
+</div>

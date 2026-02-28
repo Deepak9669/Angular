@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpServiceService } from '../http-service.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router'; 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,12 +11,17 @@ export class LoginComponent {
 
   endpoint: any = 'http://localhost:8081//Auth/login';
 
-  constructor(private httpService: HttpServiceService, private router: Router) { }
+  constructor(private httpService: HttpServiceService, private router: Router , private activatedRoute: ActivatedRoute  ) { 
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.form.logoutMessage = params['message'];
+    });
+  }
 
   form: any = {
     data: {},
     message: '',
-    inputerror: {}
+    inputerror: {},
+    logoutMessage: ''
   }
 
   signIn() {
@@ -34,6 +40,7 @@ export class LoginComponent {
 
       if (response.success) {
         localStorage.setItem('firstName', response.result.data.firstName);
+        localStorage.setItem('lastName', response.result.data.lastName);
         localStorage.setItem('roleName', response.result.data.roleName);
         localStorage.setItem('id', response.result.data.id)
         self.router.navigateByUrl('/welcome');
