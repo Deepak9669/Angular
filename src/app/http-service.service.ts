@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';  
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +14,9 @@ export class HttpServiceService {
   }
 
   get(endpoint: any, callback: any) {
+    this.httpClient.get(endpoint).subscribe((response) => {
+      callback(response)
+    })
 
   }
 

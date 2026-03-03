@@ -13,6 +13,8 @@ import { UserComponent } from './user/user.component';
 import { UserListComponent } from './user/user-list.component';
 import { RoleComponent } from './role/role.component';
 import { RoleListComponent } from './role/role-list.component';
+import { CollegeComponent } from './college/college.component';
+import { CollegeListComponent } from './college/college-list.component';
     
 
 @NgModule({         
@@ -26,7 +28,9 @@ import { RoleListComponent } from './role/role-list.component';
     UserComponent,
     UserListComponent,
     RoleComponent,
-    RoleListComponent
+    RoleListComponent,
+    CollegeComponent,
+    CollegeListComponent
   ],
   imports: [
     HttpClientModule,
