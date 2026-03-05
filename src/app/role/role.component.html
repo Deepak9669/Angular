@@ -8,8 +8,8 @@
 
             <tr>
                 <th>Role Name</th>
-                <td><input type="text" name="name" [(ngModel)]="form.data.name"
-                        placeholder="Role Name is required"></td>
+                <td><input type="text" name="name" [(ngModel)]="form.data.name" placeholder="Role Name is required">
+                </td>
                 <td><span *ngIf="form.inputerror.name" style="color:red">{{form.inputerror.name}}</span></td>
             </tr>
 
@@ -22,7 +22,11 @@
 
             <tr>
                 <th></th>
-                <td><input type="submit" value="save"></td>
+                <td>
+                    <input type="submit" value="save">
+                    <button type="button" (click)="resetForm()" style="margin-left:10px">Reset</button>
+
+                </td>
             </tr>
 
         </table>

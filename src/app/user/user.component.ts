@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpServiceService } from '../http-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -19,7 +20,7 @@ export class UserComponent implements OnInit {
 
   fileToUpload: any = null;
 
-  constructor(private httpService: HttpServiceService, private route: ActivatedRoute) {
+  constructor(private httpService: HttpServiceService, private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe((pathVariable: any) => {
       this.form.data.id = pathVariable['id'];
     })
@@ -42,32 +43,32 @@ export class UserComponent implements OnInit {
     })
   }
 
-save() {
-  let self = this;
+  save() {
+    let self = this;
 
-  this.httpService.post(this.endpoint, this.form.data, function (response: any) {
+    this.httpService.post(this.endpoint, this.form.data, function (response: any) {
 
-    if (!response.success && response.result.inputerror) {
-      self.form.inputerror = response.result.inputerror;
-    }
+      if (!response.success && response.result.inputerror) {
+        self.form.inputerror = response.result.inputerror;
+      }
 
-    if (!response.success && response.result.message) {
-      self.form.message = response.result.message;
-    }
+      if (!response.success && response.result.message) {
+        self.form.message = response.result.message;
+      }
 
-    if (response.success) {
-      self.form.message = response.result.message;
+      if (response.success) {
+        self.form.message = response.result.message;
 
-      // ✅ FIX HERE
-      self.form.data.id = response.result.data;
-    }
+        // ✅ FIX HERE
+        self.form.data.id = response.result.data;
+      }
 
-    if (self.fileToUpload != null && self.form.data.id) {
-      self.uploadFile();
-    }
+      if (self.fileToUpload != null && self.form.data.id) {
+        self.uploadFile();
+      }
 
-  })
-}
+    })
+  }
   onFileSelect(event: any) {
     this.fileToUpload = event.target.files.item(0);
     console.log('file===>', this.fileToUpload);
@@ -83,5 +84,10 @@ save() {
       self.fileToUpload = null;
     });
   }
+
+ resetForm() {
+  this.form = { data: {}, message: '', inputerror: {} };
+  this.router.navigateByUrl('/user');
+}
 
 }

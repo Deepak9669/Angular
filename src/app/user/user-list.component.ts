@@ -14,6 +14,8 @@ export class UserListComponent implements OnInit {
     searchParam: {},
     pageNo: 0,
     deleteParams: [],
+    search: {}
+
   }
 
   constructor(private httpService: HttpServiceService, private router: Router) { }
@@ -65,5 +67,12 @@ export class UserListComponent implements OnInit {
     console.log('path: ', path)
     this.router.navigateByUrl(path);
   }
+
+ resetForm() {
+  this.form.searchParam = {};
+  this.form.pageNo = 0;
+  this.search();
+  this.router.navigateByUrl('/userlist');
+}
 
 }

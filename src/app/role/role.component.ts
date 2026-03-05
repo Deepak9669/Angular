@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpServiceService } from '../http-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-role',
@@ -8,16 +9,16 @@ import { HttpServiceService } from '../http-service.service';
 })
 export class RoleComponent {
 
-    endpoint : any = 'http://localhost:8081//Role/save';  
-  constructor(private httpService: HttpServiceService){}
-   
-    form: any = {
-      data: {},
-      message: '',
-      inputerror: {}
-    }
-  
-     saveRole() {
+  endpoint: any = 'http://localhost:8081//Role/save';
+  constructor(private httpService: HttpServiceService, private router: Router) { }
+
+  form: any = {
+    data: {},
+    message: '',
+    inputerror: {}
+  }
+
+  saveRole() {
     let self = this;
     console.log('form data== ', this.form.data);
     this.httpService.post(this.endpoint, this.form.data, function (response: any) {
@@ -35,6 +36,11 @@ export class RoleComponent {
         self.form.message = response.result.message;
       }
     })
-  } 
+  }
+
+  resetForm() {
+    this.form = { data: {}, message: '', inputerrors: {} }
+    this.router.navigateByUrl('/role');
+  }
 
 }
