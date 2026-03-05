@@ -15,7 +15,8 @@ export class UserComponent implements OnInit {
   form: any = {
     data: {},
     message: '',
-    inputerror: {}
+    inputerror: {},
+    roleList: []
   }
 
   fileToUpload: any = null;
@@ -29,7 +30,18 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     if (this.form.data.id && this.form.data.id > 0) {
       this.display();
+
     }
+    this.preload();
+
+
+  }
+
+  preload() {
+    let self = this;
+    this.httpService.get('http://localhost:8081/user/preload', function (res: any) {
+      self.form.roleList = res.result.roleList;
+    })
   }
 
   display() {
@@ -85,9 +97,9 @@ export class UserComponent implements OnInit {
     });
   }
 
- resetForm() {
-  this.form = { data: {}, message: '', inputerror: {} };
-  this.router.navigateByUrl('/user');
-}
+  resetForm() {
+    this.form = { data: {}, message: '', inputerror: {} };
+    this.router.navigateByUrl('/user');
+  }
 
 }

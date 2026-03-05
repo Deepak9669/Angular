@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpServiceService } from '../http-service.service'; 
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
 
-  constructor( private router: Router) { }   
+  constructor( private router: Router , private httpService: HttpServiceService ) { }   
 
   form: any = {
     data: {}
@@ -27,10 +28,13 @@ export class NavbarComponent {
       return false;
     }
   }
-
   logout() {
-    localStorage.clear();
-    this.router.navigateByUrl('/login?message=user logged out successfully');
-  } 
+    localStorage.clear()
+    this.httpService.post('http://localhost:8080/Auth/logout', {}, function (res: any) {
+      console.log("logout res: ", res)
+    })
+    this.router.navigateByUrl('login')
+
+  }
 
 }

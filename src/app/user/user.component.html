@@ -39,11 +39,7 @@
                 <td>
                     <select name="roleId" [(ngModel)]="form.data.roleId">
                         <option [ngValue]="null">---------Select Role---------</option>
-                        <option [value]="1">Admin</option>
-                        <option [value]="2">Student</option>
-                        <option [value]="3">Faculty</option>
-                        <option [value]="4">College</option>
-                        <option [value]="5">Kiosk</option>
+                        <option *ngFor="let role of form.roleList" [value]="role.key">{{role.value}}</option>
                     </select>
                 </td>
             </tr>

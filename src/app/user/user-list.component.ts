@@ -14,8 +14,8 @@ export class UserListComponent implements OnInit {
     searchParam: {},
     pageNo: 0,
     deleteParams: [],
-    search: {}
-
+    message: '',
+    roleList: []
   }
 
   constructor(private httpService: HttpServiceService, private router: Router) { }
@@ -23,6 +23,14 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
     console.log('user list component init');
     this.search();
+    this.preload();
+  }
+
+  preload() {
+    let self = this;
+    this.httpService.get('http://localhost:8081/user/preload', function (res: any) {
+      self.form.roleList = res.result.roleList;
+    })
   }
 
   previous() {
@@ -41,6 +49,11 @@ export class UserListComponent implements OnInit {
   }
 
   delete() {
+    if (this.form.deleteParams.id == null || this.form.deleteParams.id == undefined || this.form.deleteParams.id == '' || this.form.deleteParams.id == 'null') {
+      this.form.message = 'Please select at least one record to delete';
+      return;
+    }
+
     console.log('delete user id: ', this.form.deleteParams.id);
     var self = this
     this.httpService.get('http://localhost:8081/user/delete/' + this.form.deleteParams.id, function (res: any) {
@@ -55,11 +68,8 @@ export class UserListComponent implements OnInit {
     let self = this;
     this.httpService.post('http://localhost:8081/user/search/' + this.form.pageNo, this.form.searchParam, function (response: any) {
       console.log('response ====== ', response)
-
-      if (response.success) {
         self.form.list = response.result.data;
         console.log('user list ====== ', self.form.list)
-      }
     })
   }
 
@@ -68,11 +78,8 @@ export class UserListComponent implements OnInit {
     this.router.navigateByUrl(path);
   }
 
- resetForm() {
-  this.form.searchParam = {};
-  this.form.pageNo = 0;
-  this.search();
-  this.router.navigateByUrl('/userlist');
+  resetForm() {
+location.reload();
 }
 
 }
